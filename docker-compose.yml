@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - "3308:3306"
+    volumes:
+      - "./data:/var/lib/mysql"
+      - "/docker_data/back_up/mariadb_backup:/backup_data"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "3309:8080"
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
